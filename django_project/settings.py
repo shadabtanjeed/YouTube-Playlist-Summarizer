@@ -129,5 +129,9 @@ STATIC_URL = "static/"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-RAPID_API_KEY = os.environ.get("RAPID_API_KEY")
+# Add to django_project/settings.py
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
+]
+
 GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY")

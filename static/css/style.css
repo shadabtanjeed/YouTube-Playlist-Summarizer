@@ -1,0 +1,549 @@
+:root {
+    --bg-color: #121212;
+    --card-bg: #1e1e1e;
+    --text-color: #f5f5f5;
+    --text-muted: #a0a0a0;
+    --primary-color: #ff3e3e;
+    --primary-hover: #ff1d1d;
+    --accent-color: #ff7070;
+    --border-color: #333333;
+    --success-color: #4CAF50;
+    --warning-color: #FFC107;
+    --error-color: #f44336;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+    width: 100%;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+header h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: var(--primary-color);
+}
+
+header p {
+    color: var(--text-muted);
+    font-size: 1.1rem;
+}
+
+main {
+    flex: 1;
+}
+
+.card {
+    background-color: var(--card-bg);
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+    padding: 2rem;
+    margin-bottom: 2rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.step {
+    display: none;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+.step.active {
+    display: block;
+}
+
+.step h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    color: var(--text-color);
+    font-weight: 600;
+}
+
+/* Options for content type selection */
+.options {
+    display: flex;
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.option {
+    flex: 1;
+    background-color: rgba(255, 255, 255, 0.08);
+    border: 2px solid transparent;
+    border-radius: 8px;
+    padding: 1.5rem;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.option:hover {
+    background-color: rgba(255, 255, 255, 0.12);
+    transform: translateY(-5px);
+}
+
+.option.selected {
+    border-color: var(--primary-color);
+    background-color: rgba(255, 62, 62, 0.1);
+}
+
+.option i {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    display: block;
+}
+
+.option span {
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+/* Input styles */
+.input-group {
+    margin-bottom: 1.5rem;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 1rem;
+    background-color: rgba(255, 255, 255, 0.08);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    color: var(--text-color);
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+input[type="text"]:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(255, 62, 62, 0.3);
+}
+
+.error-message {
+    color: var(--error-color);
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+    min-height: 20px;
+}
+
+/* Button styles */
+.buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 2rem;
+}
+
+.btn {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-hover);
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    background-color: transparent;
+    border: 1px solid var(--border-color);
+    color: var(--text-color);
+}
+
+.btn-secondary:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.btn-icon {
+    background-color: transparent;
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 0.5rem;
+}
+
+.btn-icon:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--primary-color);
+}
+
+/* Style options */
+.style-options {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.style-option {
+    background-color: rgba(255, 255, 255, 0.08);
+    border: 2px solid transparent;
+    border-radius: 8px;
+    padding: 1.2rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.style-option:hover {
+    background-color: rgba(255, 255, 255, 0.12);
+    transform: translateY(-3px);
+}
+
+.style-option.selected {
+    border-color: var(--primary-color);
+    background-color: rgba(255, 62, 62, 0.1);
+}
+
+.style-option i {
+    font-size: 1.5rem;
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+}
+
+.style-option span {
+    font-size: 1.1rem;
+    font-weight: 500;
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.style-option p {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+/* Loading state */
+.loader-container {
+    text-align: center;
+    padding: 3rem 1rem;
+}
+
+.loader {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 5px solid rgba(255, 62, 62, 0.3);
+    border-top-color: var(--primary-color);
+    animation: spin 1s infinite linear;
+    margin: 0 auto 2rem;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+#loading-message {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+}
+
+.loading-details {
+    color: var(--text-muted);
+}
+
+/* Result section */
+.result-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.result-actions {
+    display: flex;
+}
+
+.tabs {
+    display: flex;
+    border-bottom: 1px solid var(--border-color);
+    margin-bottom: 1.5rem;
+}
+
+.tab {
+    padding: 0.75rem 1.5rem;
+    cursor: pointer;
+    position: relative;
+    font-weight: 500;
+    color: var(--text-muted);
+    transition: all 0.3s ease;
+}
+
+.tab.active {
+    color: var(--primary-color);
+}
+
+.tab.active::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: var(--primary-color);
+}
+
+.tab-content {
+    display: none;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+#summary-content,
+#transcript-content,
+#playlist-content {
+    line-height: 1.8;
+    white-space: pre-wrap;
+    max-height: 500px;
+    overflow-y: auto;
+    padding-right: 1rem;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 1.5rem 0;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    .options {
+        flex-direction: column;
+    }
+
+    .style-options {
+        grid-template-columns: 1fr;
+    }
+
+    .card {
+        padding: 1.5rem;
+    }
+}
+
+/* Playlist specific styles */
+.playlist-video-item {
+    padding: 1rem;
+    border-bottom: 1px solid var(--border-color);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.playlist-video-item:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.playlist-video-item h3 {
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+}
+
+.playlist-video-item p {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+.playlist-video-item.error {
+    color: var(--error-color);
+    background-color: rgba(244, 67, 54, 0.1);
+}
+
+.playlist-video-item.success {
+    border-left: 3px solid var(--success-color);
+}
+
+.text-muted {
+    color: var(--text-muted);
+}
+
+/* Add these styles to your existing CSS file */
+
+/* Form sections */
+.form-section {
+    margin-bottom: 2rem;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 1.5rem;
+}
+
+.form-section:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.form-section h2 {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    color: var(--text-color);
+    font-weight: 500;
+}
+
+/* Content type selection - smaller and more minimal */
+.content-type-options {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.content-option {
+    background-color: rgba(255, 255, 255, 0.08);
+    border: 2px solid transparent;
+    border-radius: 8px;
+    padding: 0.75rem 1.5rem;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.content-option:hover {
+    background-color: rgba(255, 255, 255, 0.12);
+}
+
+.content-option.selected {
+    border-color: var(--primary-color);
+    background-color: rgba(255, 62, 62, 0.1);
+}
+
+.content-option i {
+    font-size: 1.2rem;
+    color: var(--primary-color);
+    margin-right: 0.5rem;
+}
+
+.content-option span {
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+/* Style options - make them more compact */
+.style-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+}
+
+.style-option {
+    flex-basis: calc(20% - 0.75rem);
+    background-color: rgba(255, 255, 255, 0.08);
+    border: 2px solid transparent;
+    border-radius: 8px;
+    padding: 0.8rem;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.style-option i {
+    font-size: 1.2rem;
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+}
+
+.style-option span {
+    font-size: 0.9rem;
+    font-weight: 500;
+    display: block;
+}
+
+/* Hide the description paragraphs */
+.style-option p {
+    display: none;
+}
+
+/* Make submit button more prominent */
+.buttons {
+    margin-top: 1.5rem;
+    display: flex;
+    justify-content: center;
+}
+
+/* Responsive fixes */
+@media (max-width: 768px) {
+    .content-type-options {
+        flex-direction: row;
+    }
+
+    .style-option {
+        flex-basis: calc(50% - 0.75rem);
+    }
+}

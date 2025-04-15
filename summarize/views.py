@@ -1,5 +1,6 @@
 import os
 import json
+from django.shortcuts import render
 import requests
 import subprocess
 import tempfile
@@ -615,3 +616,11 @@ def summarize_playlist(request):
         return JsonResponse(
             {"error": f"Error processing playlist: {str(e)}"}, status=500
         )
+
+
+# Add to summarize/views.py
+def index(request):
+    """
+    Main page view for the summarizer app
+    """
+    return render(request, "summarize/index.html")

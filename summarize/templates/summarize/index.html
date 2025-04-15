@@ -1,0 +1,139 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube Summarizer</title>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fab fa-youtube"></i> YouTube Summarizer</h1>
+            <p>Get transcripts and summaries of YouTube videos and playlists</p>
+        </header>
+
+        <main>
+            <div class="card">
+                <!-- Single Form Panel -->
+                <div class="step active" id="single-form-panel">
+                    <div class="form-section">
+                        <h2>1. Choose Content Type</h2>
+                        <div class="content-type-options">
+                            <div class="content-option selected" data-type="video">
+                                <i class="fas fa-video"></i>
+                                <span>Video</span>
+                            </div>
+                            <div class="content-option" data-type="playlist">
+                                <i class="fas fa-list"></i>
+                                <span>Playlist</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h2>2. Enter YouTube Link</h2>
+                        <div class="input-group">
+                            <input type="text" id="youtube-link" placeholder="Paste YouTube link here...">
+                            <div class="error-message" id="link-error"></div>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h2>3. Choose Summary Style</h2>
+                        <div class="style-options">
+                            <div class="style-option selected" data-style="detailed">
+                                <i class="fas fa-book-open"></i>
+                                <span>Detailed</span>
+                            </div>
+                            <div class="style-option" data-style="short">
+                                <i class="fas fa-list-ul"></i>
+                                <span>Short</span>
+                            </div>
+                            <div class="style-option" data-style="academic">
+                                <i class="fas fa-graduation-cap"></i>
+                                <span>Academic</span>
+                            </div>
+                            <div class="style-option" data-style="technical">
+                                <i class="fas fa-cogs"></i>
+                                <span>Technical</span>
+                            </div>
+                            <div class="style-option" data-style="descriptive">
+                                <i class="fas fa-film"></i>
+                                <span>Descriptive</span>
+                            </div>
+                        </div>
+                        <div class="buttons">
+                            <button class="btn btn-primary" id="submit-request">Summarize</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="step" id="loading-step">
+                    <div class="loader-container">
+                        <div class="loader"></div>
+                        <p id="loading-message">Processing your request...</p>
+                        <p class="loading-details"></p>
+                    </div>
+                </div>
+
+                <div class="step" id="result-step">
+                    <div class="result-header">
+                        <h2>Summary Results</h2>
+                        <div class="result-actions">
+                            <button class="btn btn-icon" id="copy-summary" title="Copy Summary">
+                                <i class="fas fa-copy"></i>
+                            </button>
+                            <button class="btn btn-icon" id="download-summary" title="Download as TXT">
+                                <i class="fas fa-download"></i>
+                            </button>
+                            <button class="btn btn-icon" id="new-summary" title="New Summary">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="tabs">
+                        <div class="tab active" data-tab="summary-tab">Summary</div>
+                        <div class="tab" data-tab="transcript-tab">Transcript</div>
+                        <div id="playlist-tab-container" style="display: none;">
+                            <div class="tab" data-tab="playlist-tab">All Videos</div>
+                        </div>
+                    </div>
+
+                    <div class="tab-content active" id="summary-tab">
+                        <div id="summary-content"></div>
+                    </div>
+
+                    <div class="tab-content" id="transcript-tab">
+                        <div id="transcript-content"></div>
+                    </div>
+
+                    <div class="tab-content" id="playlist-tab">
+                        <div id="playlist-content"></div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>&copy; Shadab Tanjeed</p>
+        </footer>
+    </div>
+
+    <!-- Custom JavaScript -->
+    <script src="{% static 'js/script.js' %}"></script>
+</body>
+
+</html>
