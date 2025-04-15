@@ -1,2 +1,3 @@
 # YouTube Playlist Summarizer
  
+Gemini keeps hallucinating. Currently work in progress...
